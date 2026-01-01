@@ -1,0 +1,39 @@
+[flake8]
+# Максимальная длина строки
+max-line-length = 88
+# Игнорируемые правила
+ignore =
+    E203,  # whitespace before ':' (совместимость с black)
+    W503,  # line break before binary operator
+    E501,  # line too long (black сам обрабатывает)
+    C901,  # too complex
+# Включаемые плагины (опционально)
+# extend-ignore =
+#     F401  # unused imports (если используете isort)
+# Параметры
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    env,
+    .env,
+    .mypy_cache,
+    .pytest_cache,
+    build,
+    dist,
+    migrations,
+    .tox,
+    *.egg-info,
+    .ipynb_checkpoints
+# Периодически проверять сложность функций
+max-complexity = 10
+# Формат вывода
+format = default
+# Показывать источник ошибки
+show-source = true
+# Статистика
+statistics = false
+# Количество строк в файле для пропуска проверки
+per-file-ignores =
+    __init__.py:F401
