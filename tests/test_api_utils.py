@@ -4,7 +4,7 @@
 
 import sys
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 from src.api_utils import (
     get_currency_rates_api,
@@ -40,7 +40,7 @@ def test_get_fallback_stock_prices() -> None:
     assert isinstance(prices["AAPL"], float)
 
 
-@patch("api_utils.make_api_request")
+@patch("src.api_utils.make_api_request")
 def test_get_currency_rates_api_success(mock_request):
     """Тест успешного получения курсов валют из API."""
     mock_data = {"result": "success", "conversion_rates": {"USD": 0.011, "EUR": 0.010, "GBP": 0.0085}}
@@ -54,7 +54,7 @@ def test_get_currency_rates_api_success(mock_request):
     assert rates["USD"] == 0.011
 
 
-@patch("api_utils.make_api_request")
+@patch("src.api_utils.make_api_request")
 def test_get_currency_rates_api_failure(mock_request):
     """Тест получения курсов при ошибке API."""
     mock_request.return_value = None
@@ -67,7 +67,8 @@ def test_get_currency_rates_api_failure(mock_request):
     assert "USD" in rates
 
 
-@patch("api_utils.get_stock_prices_alpha_vantage")
+@patch("src.api_utils.get_stock_prices_alpha_vantage")
+@patch("src.api_utils.ALPHA_VANTAGE_API_KEY", "test_key")
 def test_get_stock_prices_api_with_alpha_vantage(mock_alpha):
     """Тест получения цен через Alpha Vantage."""
     mock_alpha.return_value = {"AAPL": 185.30, "GOOGL": 145.20}

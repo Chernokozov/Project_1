@@ -106,6 +106,13 @@ def events_page(date_time_str: str, period: str = "M") -> Dict[str, Any]:
 
     df = load_transactions(DATA_DIR)
 
+    if not pd.api.types.is_datetime64_any_dtype(df["Дата операции"]):
+        df["Дата операции"] = pd.to_datetime(
+            df["Дата операции"],
+            dayfirst=True,
+            errors="coerce"
+        )
+
     # Парсим дату
     try:
         if " " in date_time_str:

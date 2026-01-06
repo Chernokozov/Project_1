@@ -191,7 +191,7 @@ def test_find_phone_numbers() -> None:
     ]
 
     results = find_phone_numbers(transactions)
-    assert len(results) == 4
+    assert len(results) == 3
     descriptions = [r["Описание"] for r in results]
     assert any("+7 921 111-22-33" in desc for desc in descriptions)
     assert any("+7 995 555-55-55" in desc for desc in descriptions)

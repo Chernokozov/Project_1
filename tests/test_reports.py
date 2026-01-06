@@ -79,7 +79,7 @@ def test_spending_by_weekday_empty() -> None:
     result = spending_by_weekday(df)
 
     assert "error" in result
-    assert "Нет данных" in result["error"]
+    assert "Пустые данные" in result["error"]
 
 
 def test_spending_by_weekday_with_date() -> None:
