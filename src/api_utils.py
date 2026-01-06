@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional
 import requests
 from requests.exceptions import RequestException, Timeout
 
-from config import (
+from src.config import (
     ALPHA_VANTAGE_API_KEY,
     ALPHA_VANTAGE_URL,
     EXCHANGE_RATE_API_KEY,

@@ -8,6 +8,7 @@ from typing import Any, Dict
 
 import pandas as pd
 
+from src.config import DATA_DIR
 from src.utils import get_currency_rates, get_greeting, get_stock_prices, load_transactions, load_user_settings
 
 logger = logging.getLogger(__name__)
@@ -103,7 +104,7 @@ def events_page(date_time_str: str, period: str = "M") -> Dict[str, Any]:
 
     logger.info(f"📊 Генерация страницы 'События' для {date_time_str}, период: {period}")
 
-    df = load_transactions()
+    df = load_transactions(DATA_DIR)
 
     # Парсим дату
     try:

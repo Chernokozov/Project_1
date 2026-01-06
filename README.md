@@ -4,7 +4,8 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)
 
-Приложение для анализа банковских транзакций из Excel-файлов. Генерирует JSON-данные для веб-страниц, формирует отчеты и предоставляет сервисы для анализа финансовых операций.
+Приложение для анализа банковских транзакций из Excel-файлов. Генерирует JSON-данные для веб-страниц, формирует отчеты и
+предоставляет сервисы для анализа финансовых операций.
 
 ## 📋 Содержание
 
@@ -40,24 +41,28 @@
 ## 🚀 Установка
 
 1. **Клонируйте репозиторий:**
+
 ```bash
 git clone https://github.com/ваш-username/bank-transaction-analyzer.git
 cd bank-transaction-analyzer
 ```
 
 2. **Установите зависимости через Poetry:**
+
 ```bash
 poetry install
 ```
 
 3. **Активируйте виртуальное окружение:**
+
 ```bash
 poetry shell
 ```
 
 Или используйте команды Poetry напрямую:
+
 ```bash
-poetry run python src/main.py
+poetry run python main.py
 ```
 
 ## ⚙️ Конфигурация
@@ -65,11 +70,13 @@ poetry run python src/main.py
 ### 1. Настройка переменных окружения
 
 Создайте файл `.env` на основе шаблона:
+
 ```bash
 cp .env_template .env
 ```
 
 Отредактируйте `.env` файл, добавив необходимые ключи API:
+
 ```env
 # API ключи для получения данных о валютах и акциях
 EXCHANGE_RATE_API_KEY=ваш_ключ_для_валют
@@ -83,10 +90,21 @@ DATA_FILE_PATH=data/operations.xlsx
 ### 2. Пользовательские настройки
 
 Создайте файл `user_settings.json` для настройки отображаемых валют и акций:
+
 ```json
 {
-  "user_currencies": ["USD", "EUR", "GBP"],
-  "user_stocks": ["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"]
+  "user_currencies": [
+    "USD",
+    "EUR",
+    "GBP"
+  ],
+  "user_stocks": [
+    "AAPL",
+    "AMZN",
+    "GOOGL",
+    "MSFT",
+    "TSLA"
+  ]
 }
 ```
 
@@ -95,6 +113,7 @@ DATA_FILE_PATH=data/operations.xlsx
 Поместите ваш Excel-файл с транзакциями в папку `data/` и назовите его `operations.xlsx`.
 
 Формат файла должен соответствовать выгрузке из Т-Банка:
+
 - Дата операции
 - Дата платежа
 - Номер карты
@@ -114,30 +133,33 @@ DATA_FILE_PATH=data/operations.xlsx
 ## 📁 Структура проекта
 
 ```
-.
-├── src/
-│   ├── __init__.py
-│   ├── utils.py             # Вспомогательные функции
-│   ├── views.py             # Функции для веб-страниц
-│   ├── services.py          # Сервисы анализа транзакций
-│   └── reports.py           # Генерация отчетов
-├── tests/
-│   ├── __init__.py
-│   ├── test_utils.py
-│   ├── test_views.py
-│   ├── test_services.py
-│   └── test_reports.py
-├── data/
-│   └── operations.xlsx      # Файл с транзакциями
-├── main.py                  # Точка входа приложения
-├── .env                     # Переменные окружения (не в репозитории)
-├── .env_template            # Шаблон .env файла
-├── .flake8                  # Конфигурация Flake8
+├── .env_template
+├── .flake8 
 ├── .gitignore
-├── pyproject.toml          # Конфигурация Poetry и инструментов
+├── data/
+│ └── operations.xlsx
+├── main.py
 ├── poetry.lock
-├── user_settings.json      # Пользовательские настройки
-└── README.md
+├── pyproject.toml 
+├── README.md
+├── src/
+│ ├── __init__.py
+│ ├── api_utils.py 
+│ ├── config.py
+│ ├── file_utils.py 
+│ ├── reports.py 
+│ ├── services.py 
+│ ├── utils.py
+│ └── views.py 
+├── tests/
+│ ├── __init__.py
+│ ├── conftest.py
+│ ├── test_api_utils.py 
+│ ├── test_reports.py 
+│ ├── test_services.py 
+│ ├── test_utils.py 
+│ └── test_views.py 
+└── user_settings.json
 ```
 
 ## 🎯 Использование
@@ -145,37 +167,12 @@ DATA_FILE_PATH=data/operations.xlsx
 ### Запуск приложения
 
 ```bash
-# Активируйте виртуальное окружение
+# Используя Poetry (рекомендуется)
+poetry run python main.py
+
+# Или активировав виртуальное окружение
 poetry shell
-
-# Запустите основную функцию
-python src/main.py
-
-# Или используйте Poetry напрямую
-poetry run python src/main.py
-```
-
-### Пример использования функций
-
-```python
-from src.views import home_page, events_page
-from src.services import profitable_cashback_categories
-from src.reports import spending_by_category
-
-# Веб-страницы
-home_data = home_page("2024-01-15 14:30:00")
-events_data = events_page("2024-01-15", "M")
-
-# Сервисы
-transactions = [...]  # список транзакций
-cashback_analysis = profitable_cashback_categories(2024, 1, transactions)
-
-# Отчеты
-import pandas as pd
-df = pd.read_excel("data/operations.xlsx")
-category_report = spending_by_category(df, "Супермаркеты", "2024-01-15")
-```
-
+python main.py
 ## 📊 Категории заданий
 
 ### Веб-страницы
@@ -215,6 +212,7 @@ pytest -v
 ### Проверка покрытия кода
 
 Требуется покрытие не менее 80%:
+
 ```bash
 pytest --cov=src --cov-report=html
 ```
@@ -238,8 +236,6 @@ flake8 src/ tests/
 # Проверка типов с mypy
 mypy src/
 ```
-
-Конфигурация инструментов находится в `pyproject.toml`.
 
 ## 🤝 Вклад в проект
 
@@ -281,15 +277,57 @@ mypy src/
 
 ---
 
-*Проект разработан в рамках учебного курса по Python. Данные для анализа должны быть анонимизированы и не содержать персональную информацию.*
+*Проект разработан в рамках учебного курса по Python. Данные для анализа должны быть анонимизированы и не содержать
+персональную информацию.*
 
 ## 🎯 Функциональности проекта
 
 ### Веб-страницы (JSON генерация)
+
 - ✅ **Главная страница** (`views.home_page_real`) - сводка по картам, топ транзакции, курсы валют
 - ✅ **Страница "События"** (`views.events_page`) - анализ расходов/поступлений за период
 
 ### Сервисы анализа
+
+- ✅ **Выгодные категории кешбэка** (`services.profitable_cashback_categories`)
+- ✅ **Инвесткопилка** (`services.investment_bank`) - округление трат
+- ✅ **Простой поиск** (`services.simple_search`) - по описанию и категории
+- ✅ **Поиск по телефонным номерам** (`services.find_phone_numbers`) - regex поиск
+- ✅ **Поиск переводов физлицам** (`services.find_personal_transfers`) - шаблон "Имя Ф."
+
+## 🧪 Тестирование
+
+### Установка тестовых зависимостей
+
+```bash
+poetry install --with test
+
+# Все тесты
+poetry run pytest tests/ -v
+
+# С покрытием кода (нужен pytest-cov)
+poetry add --group test pytest-cov
+poetry run pytest --cov=src --cov-report=term-missing
+
+# Конкретный тестовый файл
+poetry run pytest tests/test_services.py -v
+```
+
+
+# Настройки приложения
+
+LOG_LEVEL=INFO
+DATA_FILE_PATH=data/operations.xlsx
+MAX_RETRIES=3
+REQUEST_TIMEOUT=10
+
+### Веб-страницы (JSON генерация)
+
+- ✅ **Главная страница** (`views.home_page_real`) - сводка по картам, топ транзакции, курсы валют
+- ✅ **Страница "События"** (`views.events_page`) - анализ расходов/поступлений за период
+
+### Сервисы анализа
+
 - ✅ **Выгодные категории кешбэка** (`services.profitable_cashback_categories`)
 - ✅ **Инвесткопилка** (`services.investment_bank`) - округление трат
 - ✅ **Простой поиск** (`services.simple_search`) - по описанию и категории
@@ -297,23 +335,21 @@ mypy src/
 - ✅ **Поиск переводов физлицам** (`services.find_personal_transfers`) - шаблон "Имя Ф."
 
 ### Отчеты
+
 - ✅ **Траты по категории** (`reports.spending_by_category_simple`)
 - ✅ **Траты по дням недели** (`reports.spending_by_weekday_last_year`)
 - ✅ **Траты в рабочий/выходной день** (`reports.spending_workday_vs_weekend`)
 
 ### Утилиты
+
 - ✅ **Загрузка данных** (`utils.load_transactions`) - чтение Excel с парсингом дат
-- ✅ **API валют/акций** (`utils.get_currency_rates`, `utils.get_stock_prices`)
+- ✅ **API валют/акций** (`api_utils.get_currency_rates_api`, `api_utils.get_stock_prices_api`)
 - ✅ **Пользовательские настройки** (`utils.load_user_settings`)
+- ✅ **Работа с файлами** (`file_utils`) - безопасная работа с путями
 
-## 🧪 Тестирование
-- Покрытие кода: 80%+ (pytest-cov)
-- Моки и фикстуры для API
-- Параметризованные тесты
-- Тестирование крайних случаев
+### Конфигурация
 
-## 📁 Структура проекта
-(оставьте существующую структуру)
+- ✅ **Конфигурация приложения** (`config`) - настройки API и путей
 
 ## 🚀 Быстрый старт
 
@@ -327,15 +363,22 @@ poetry install
 
 # 3. Настроить окружение
 cp .env_template .env
-# отредактируйте .env при необходимости
+# отредактируйте .env если есть API ключи
 
 # 4. Создать user_settings.json
 echo '{"user_currencies": ["USD", "EUR"], "user_stocks": ["AAPL", "GOOGL"]}' > user_settings.json
 
 # 5. Поместить файл operations.xlsx в data/
 
-# 6. Запустить
-poetry run python src/main.py
+# 6. Запустить приложение
+poetry run python main.py
 
 # 7. Запустить тесты
 poetry run pytest tests/ -v
+
+# 8. Проверить качество кода
+poetry run black src/ tests/
+poetry run isort src/ tests/
+poetry run flake8 src/ tests/
+poetry run mypy src/
+```

@@ -29,7 +29,7 @@ def get_reports_dir() -> Path:
     return reports_dir
 
 
-def load_json_file(file_path: Path) -> Dict[str, Any]:
+def load_json_file(file_path: Path) -> Any:
     """
     Загружает JSON файл.
     """

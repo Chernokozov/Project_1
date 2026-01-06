@@ -12,8 +12,8 @@ load_dotenv()
 LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 LOG_LEVEL = logging.INFO
 
-PROJECT_ROOT = Path(__file__).parent.parent
-DATA_DIR = PROJECT_ROOT / 'data'
+PROJECT_ROOT = Path(__file__).parent
+DATA_DIR = PROJECT_ROOT / 'data'/ 'operations.xlsx'
 REPORTS_DIR = PROJECT_ROOT / 'reports'
 
 DEFAULT_SETTINGS: Dict[str, Any] = {

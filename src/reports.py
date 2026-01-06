@@ -15,7 +15,7 @@ from src.file_utils import get_reports_dir, save_json_file
 logger = logging.getLogger(__name__)
 
 
-def report_to_file(filename: str = "report.json"):
+def report_to_file(filename: str = "report.json") -> Callable:
     """
     Простой декоратор для сохранения отчета в файл
     """

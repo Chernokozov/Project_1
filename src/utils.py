@@ -9,7 +9,7 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
-from config import FALLBACK_CURRENCY_RATES, FALLBACK_STOCK_PRICES
+from src.config import FALLBACK_CURRENCY_RATES, FALLBACK_STOCK_PRICES
 from src.api_utils import get_currency_rates_api, get_stock_prices_api
 from src.file_utils import get_data_dir, load_json_file
 

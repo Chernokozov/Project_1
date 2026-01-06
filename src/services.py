@@ -85,7 +85,7 @@ def profitable_cashback_categories(year: int, month: int, transactions: List[Dic
                     filtered_transactions.append(transaction)
 
         except (ValueError, IndexError) as e:
-            logger.debug(f"Ошибка парсинга даты {trans_date}: {e}")
+            logger.debug(f"Ошибка парсинга даты: {e}")
             continue
 
     logger.info(f"Найдено {len(filtered_transactions)} транзакций за указанный период")
